@@ -25,7 +25,7 @@ namespace SupperMarketSaiGon.Areas.Admin.Controllers
             return View(await _context.Roles.ToListAsync());
         }
 
-        // GET: Admin/AdminRoles/Details/5
+        // GET: Admin/AdminRoles/Details/4
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

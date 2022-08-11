@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCoreHero.ToastNotification.Abstractions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -13,10 +14,12 @@ namespace SupperMarketSaiGon.Areas.Admin.Controllers
     public class AdminRolesController : Controller
     {
         private readonly dbMarketsContext _context;
+        public INotyfService _notyfService { get; }
 
-        public AdminRolesController(dbMarketsContext context)
+        public AdminRolesController(dbMarketsContext context, INotyfService notyfService)
         {
             _context = context;
+            _notyfService = notyfService;
         }
 
         // GET: Admin/AdminRoles
@@ -99,11 +102,13 @@ namespace SupperMarketSaiGon.Areas.Admin.Controllers
                 {
                     _context.Update(roles);
                     await _context.SaveChangesAsync();
+                    _notyfService.Success("Cập nhật thành công");
                 }
                 catch (DbUpdateConcurrencyException)
                 {
                     if (!RolesExists(roles.RoleId))
                     {
+                        _notyfService.Success("Có lỗi xảy ra");
                         return NotFound();
                     }
                     else
@@ -142,6 +147,7 @@ namespace SupperMarketSaiGon.Areas.Admin.Controllers
             var roles = await _context.Roles.FindAsync(id);
             _context.Roles.Remove(roles);
             await _context.SaveChangesAsync();
+            _notyfService.Success("Xóa quyền truy cập thành công");
             return RedirectToAction(nameof(Index));
         }
 

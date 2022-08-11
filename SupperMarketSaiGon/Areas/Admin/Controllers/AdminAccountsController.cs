@@ -150,7 +150,7 @@ namespace SupperMarketSaiGon.Areas.Admin.Controllers
             return View(accounts);
         }
 
-        // POST: Admin/AdminAccounts/Delete/5
+        // POST: Admin/AdminAccounts/Delete/3
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -61,7 +61,7 @@ namespace SupperMarketSaiGon.Areas.Admin.Controllers
             return Json(new { status = "success", redirectUrl = url });
         }
 
-        // GET: Admin/AdminProducts/Details/5
+        // GET: Admin/AdminProducts/Details/2
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
